@@ -54,6 +54,12 @@ class LoginFragment : Fragment(), OnClickListener {
 
         btnLogin.setOnClickListener(this)
         btnRegister.setOnClickListener(this)
+
+        if(auth.currentUser!=null){
+            var mainActivity: Intent = Intent(requireActivity(), MainActivity::class.java)
+            startActivity(mainActivity)
+            requireActivity().finish()
+        }
     }
 
     override fun onClick(v: View?) {
