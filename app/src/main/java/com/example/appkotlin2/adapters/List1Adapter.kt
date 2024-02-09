@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.appkotlin2.R
 
-class List1Adapter(var context:Context,var arNombres:Array<String>):
+class List1Adapter(var context:Context,var arNombres:List<String>):
     RecyclerView.Adapter<List1Item>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): List1Item {
         var viewXML:View = LayoutInflater.from(context).inflate(
