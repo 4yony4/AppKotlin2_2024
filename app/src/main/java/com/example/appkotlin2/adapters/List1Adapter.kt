@@ -11,8 +11,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.appkotlin2.R
+import com.example.appkotlin2.fbobjetcs.Perfil
+import com.squareup.picasso.Picasso
 
-class List1Adapter(var context:Context,var arNombres:List<String>):
+class List1Adapter(var context:Context,var arPerfiles:List<Perfil>):
     RecyclerView.Adapter<List1Item>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): List1Item {
         var viewXML:View = LayoutInflater.from(context).inflate(
@@ -23,11 +25,15 @@ class List1Adapter(var context:Context,var arNombres:List<String>):
     }
 
     override fun getItemCount(): Int {
-        return arNombres.size
+        return arPerfiles.size
     }
 
     override fun onBindViewHolder(holder: List1Item, position: Int) {
-        holder.tvItem1.text=arNombres[position]
+        val perfilTemp:Perfil=arPerfiles[position]
+        //holder.tvItem1.text=perfilTemp.nombre+"  "+perfilTemp.apellidos
+        //holder.swItem1.isChecked=perfilTemp.inclass
+        //Picasso.get().load(perfilTemp.avatar).into(holder.ivImageItem1)
+        holder.bind(perfilTemp)
     }
 }
 
@@ -41,6 +47,12 @@ class List1Item(itemView: View) : ViewHolder(itemView) {
         tvItem1=itemView.findViewById(R.id.tvItem1)
         ivImageItem1=itemView.findViewById(R.id.ivImageItem1)
         swItem1=itemView.findViewById(R.id.swItem1)
+    }
+
+    fun bind(perfil: Perfil){
+        tvItem1.text=perfil.nombre+"  "+perfil.apellidos
+        swItem1.isChecked=perfil.inclass
+        Picasso.get().load(perfil.avatar).into(ivImageItem1)
     }
 
 

@@ -6,11 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appkotlin2.R
 import com.example.appkotlin2.adapters.List1Adapter
+import com.example.appkotlin2.fbobjetcs.Perfil
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -45,16 +45,16 @@ class ListFragment : Fragment() {
         rvLista1.layoutManager=LinearLayoutManager(requireContext())
         //rvLista1.layoutManager = GridLayoutManager(context,3)
         //val arNombres = arrayOf("Castanedo", "Martinez", "Guemes", "Roma")
-        val arNombres = ArrayList<String>()
-        db.collection("nombres")
+        val arPerfiles = ArrayList<Perfil>()
+        db.collection("Perflies")
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    //Log.d(TAG, "${document.id} => ${document.data}")
-                    arNombres.add(document.data["valor"].toString())
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                    arPerfiles.add(Perfil(document.data))
                 }
                 //Log.d(TAG, "111--------->>>>>>>>>>>> "+arNombres.size)
-                rvLista1.adapter=List1Adapter(requireContext(),arNombres.toList())
+                rvLista1.adapter=List1Adapter(requireContext(),arPerfiles.toList())
             }
             .addOnFailureListener { exception ->
                 Log.d(TAG, "Error getting documents: ", exception)
