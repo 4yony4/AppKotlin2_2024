@@ -9,5 +9,18 @@
         android:id="@+id/listFragment"
         android:name="com.example.appkotlin2.fragments.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.appkotlin2.fragments.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfilFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
 </navigation>
